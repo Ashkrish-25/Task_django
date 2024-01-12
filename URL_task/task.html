@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Task List</h1>
+    <ul id="task">
+    </ul>
+
+    <script>
+        function loadTasks() {
+            fetch('/url/tasks')
+                .then(response => response.json())
+                .then(data => {
+                    let taskList = document.getElementById('task-list');
+                    taskList.innerHTML = '';
+                    data.forEach(task => {
+                        let listItem = document.createElement('li');
+                        listItem.textContent = task.name;
+                        taskList.appendChild(listItem);
+                    });
+                });
+        }
+
+        loadTasks();
+    </script>
+</body>
+</html>
